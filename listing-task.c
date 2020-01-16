@@ -19,7 +19,7 @@ void dfs(struct task_struct *task)
 	/* Print each child information and call recursive DFS*/
 	list_for_each(list, &task->children) {
 		next_task = list_entry(list, struct task_struct, sibling);
-		printk(KERN_INFO "[pid: %d] pname: %s [state: %ld]\n", next_task->pid, next_task->comm, next_task->state);
+		printk(KERN_INFO "[pid: %d] pname: %s [state: %ld] cpu: %d [nr_cpus_allowed: %d] \n" , task->pid, task->comm, task->state, task->cpu, task->nr_cpus_allowed);
 		dfs(next_task);
 	}	
 }
@@ -28,7 +28,7 @@ int listing_tasks_init(void)
 {
 	struct task_struct *task;
 
-	printk(KERN_INFO "Loading module\n");
+	printk(KERN_INFO "Module loaded!\n");
 		
 	/* Search for process by given PID parameter*/
 	for_each_process(task) {
@@ -37,14 +37,14 @@ int listing_tasks_init(void)
 	}
 
 	/* Print informations about process and iterate over children using DFS*/
-	printk(KERN_INFO "Found parent! \n[pid: %d] pname: %s [state: %ld]\n", task->pid, task->comm, task->state);
+	printk(KERN_INFO "Found parent! \n[pid: %d] pname: %s [state: %ld] cpu: %d [nr_cpus_allowed: %d] \n" , task->pid, task->comm, task->state, task->cpu, task->nr_cpus_allowed);
 	dfs(task);
 	return 0;
 }
 
 void listing_tasks_exit(void)
 {
-	printk(KERN_INFO "Removing module\n");
+	printk(KERN_INFO "Module removed!\n");
 }
 
 module_init(listing_tasks_init);
