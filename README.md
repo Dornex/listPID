@@ -1,5 +1,5 @@
 # listPID
-Kernel module that prints information about a process and its children 
+Kernel module that prints information about a process and its children.
 
 ## How to use
 
@@ -11,6 +11,14 @@ Kernel module that prints information about a process and its children
 4. dmesg                                    |   shows kernel printk
 
 </pre>
+
+## Informations about processes
+
+1. pid: pid number
+2. pname: process name
+3. state: -1 unrunnable, 0 runnable, >0 stopped
+4. cpu: current running cpu
+5. nr_cpus_allowed
 
 
 
