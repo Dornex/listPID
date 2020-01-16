@@ -1,5 +1,6 @@
 # listPID
 Kernel module that prints information about a process and its children.
+for_each_process and list_for_each are two macros, from linux/sched/signal.h and linux/init.h which iterate through lists.
 
 ## How to use
 
